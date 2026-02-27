@@ -185,7 +185,7 @@ const LGSFSection = () => {
                 className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl"
               >
                 <img 
-                  src="On Site.png" 
+                  src="LGSF Fabrication.png" 
                   alt="LGSF Construction Site" 
                   className="w-full aspect-square object-cover"
                   referrerPolicy="no-referrer"
@@ -256,7 +256,7 @@ const FactorySection = () => {
             className="rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl"
           >
             <img 
-              src="LGSF Fabrication.png" 
+              src="design1.png" 
               alt="LGSF Roll Forming Machine" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
@@ -332,7 +332,7 @@ const StructuralSection = () => {
               className="rounded-[3rem] overflow-hidden shadow-2xl"
             >
               <img 
-                src="design1.png" 
+                src="structural.jpeg" 
                 alt="Structural Steel Model" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
