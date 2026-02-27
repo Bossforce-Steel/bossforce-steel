@@ -332,7 +332,7 @@ const StructuralSection = () => {
               className="rounded-[3rem] overflow-hidden shadow-2xl"
             >
               <img 
-                src="structural.jpeg" 
+                src="structural.jpg" 
                 alt="Structural Steel Model" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
