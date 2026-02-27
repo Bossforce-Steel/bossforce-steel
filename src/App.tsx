@@ -40,9 +40,12 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <div className="bg-orange-700 p-2 rounded-lg shadow-inner">
-            <Building2 className="text-white w-6 h-6" />
-          </div>
+          <img 
+            src="BossforceLogo.png" 
+            alt="Bossforce Steel Logo" 
+            className="h-12 w-auto object-contain"
+            referrerPolicy="no-referrer"
+          />
           <div className="flex flex-col">
             <span className={`text-2xl font-black tracking-tighter leading-none ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
               BOSSFORCE <span className="text-orange-600">STEEL</span>
@@ -438,9 +441,12 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
           <div className="max-w-sm">
             <div className="flex items-center gap-3 mb-8">
-              <div className="bg-orange-700 p-2 rounded-lg">
-                <Building2 className="text-white w-6 h-6" />
-              </div>
+              <img 
+                src="BossforceLogo.png" 
+                alt="Bossforce Steel Logo" 
+                className="h-10 w-auto object-contain"
+                referrerPolicy="no-referrer"
+              />
               <span className="text-2xl font-black tracking-tighter text-white">
                 BOSSFORCE <span className="text-orange-600">STEEL</span>
               </span>
