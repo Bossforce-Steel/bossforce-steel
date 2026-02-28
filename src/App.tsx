@@ -54,10 +54,11 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'LGSF', path: '/#lgsf' },
-    { name: 'Structural', path: '/#structural' },
-    { name: 'Manufacturing', path: '/#manufacturing' },
-    { name: 'Contact', path: '/#contact' },
+    { name: 'LGSF', path: '/lgsf' },
+    { name: 'Structural Steel', path: '/structural' },
+    { name: 'Manufacturing', path: '/manufacturing' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   const isHome = location.pathname === '/';
@@ -65,18 +66,18 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled || !isHome ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-5">
           <img 
             src="BossforceLogo.png" 
             alt="Bossforce Steel Logo" 
-            className="h-16 md:h-20 w-auto object-contain"
+            className="h-16 md:h-28 w-auto object-contain"
             referrerPolicy="no-referrer"
           />
-          <div className="flex flex-col">
-            <span className={`text-3xl md:text-5xl font-black tracking-tighter leading-none ${isScrolled || !isHome ? 'text-slate-900' : 'text-white'}`}>
+          <div className="flex flex-col justify-between h-14 md:h-24 py-1">
+            <span className={`text-3xl md:text-7xl font-black tracking-tighter leading-none ${isScrolled || !isHome ? 'text-slate-900' : 'text-white'}`}>
               BOSSFORCE <span className="text-orange-600">STEEL</span>
             </span>
-            <span className={`text-[9px] md:text-[11px] uppercase tracking-[0.48em] font-bold mt-1 whitespace-nowrap ${isScrolled || !isHome ? 'text-slate-500' : 'text-white/60'}`}>
+            <span className={`text-[7px] md:text-[15px] uppercase tracking-[0.62em] font-bold whitespace-nowrap leading-none ${isScrolled || !isHome ? 'text-slate-500' : 'text-white/60'}`}>
               Engineering safer tomorrow
             </span>
           </div>
@@ -155,8 +156,10 @@ const Hero = () => {
             <Zap className="w-4 h-4 text-orange-400" />
             <span className="text-orange-400 text-[10px] font-black uppercase tracking-[0.4em]">Next-Gen Construction</span>
           </div>
-          <h1 className="text-3xl md:text-6xl font-black text-white leading-tight mb-12 tracking-tighter uppercase">
-            ENGINEERING <span className="text-orange-600">SAFER</span> <br /> TOMORROW
+          <h1 className="text-5xl md:text-8xl font-black text-white leading-[0.9] mb-12 tracking-tighter uppercase flex flex-col">
+            <span>ENGINEERING</span>
+            <span className="text-orange-600">SAFER</span>
+            <span>TOMORROW</span>
           </h1>
           <div className="flex flex-col sm:flex-row gap-5">
             <Link to="/lgsf" className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-3 group shadow-2xl shadow-orange-600/40">
@@ -213,7 +216,7 @@ const LGSFSection = ({ isPage = false }) => {
 
           <div className="lg:w-1/2">
             <h2 className="text-orange-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Light Gauge Steel Framing</h2>
-            <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-8 leading-tight tracking-tighter">The Smart Way to Build in J&K.</h3>
+            <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight tracking-tighter">The Smartest Way to Build in J&K.</h3>
             <p className="text-slate-600 text-lg mb-10 leading-relaxed">
               LGSF is a state-of-the-art construction technology that uses cold-formed steel sections. It's ideally suited for the seismic zones of Jammu & Kashmir, offering unparalleled safety and precision.
             </p>
@@ -257,7 +260,7 @@ const FactorySection = ({ isPage = false }) => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-24">
           <h2 className="text-orange-500 font-black text-xs uppercase tracking-[0.4em] mb-6">Our Manufacturing</h2>
-          <h3 className="text-5xl md:text-6xl font-black text-white mb-8 tracking-tighter">Precision Engineering Excellence.</h3>
+          <h3 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tighter">Precision Engineering Excellence.</h3>
           <p className="text-slate-400 text-lg">
             Our advanced roll-forming facility uses fully automated CNC machinery to produce LGSF sections with sub-millimeter accuracy, ensuring perfect fitment for every project.
           </p>
@@ -326,7 +329,7 @@ const StructuralSection = ({ isPage = false }) => {
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2 order-2 lg:order-1">
             <h2 className="text-orange-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Structural Steel</h2>
-            <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-8 tracking-tighter">Heavy-Duty Structural Excellence.</h3>
+            <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 tracking-tighter">Heavy-Duty Structural Excellence.</h3>
             <p className="text-slate-600 text-lg mb-10 leading-relaxed">
               Beyond LGSF, we are experts in traditional structural steel construction. From industrial warehouses to complex commercial frames, we provide end-to-end fabrication and erection services.
             </p>
@@ -373,7 +376,7 @@ const Contact = ({ isPage = false }) => {
         <div className="grid lg:grid-cols-2 gap-20">
           <div>
             <h2 className="text-orange-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Contact Us</h2>
-            <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-10 tracking-tighter">Let's Build Safely.</h3>
+            <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-10 tracking-tighter">Let's Build Safely.</h3>
             
             <div className="space-y-12">
               <div className="flex gap-8">
@@ -458,18 +461,18 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
           <div className="max-w-sm">
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-5 mb-8">
               <img 
                 src="BossforceLogo.png" 
                 alt="Bossforce Steel Logo" 
-                className="h-16 w-auto object-contain"
+                className="h-16 md:h-24 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
-              <div className="flex flex-col">
-                <span className="text-3xl md:text-4xl font-black tracking-tighter text-white leading-none">
+              <div className="flex flex-col justify-between h-14 md:h-20 py-1">
+                <span className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-none">
                   BOSSFORCE <span className="text-orange-600">STEEL</span>
                 </span>
-                <span className="text-[9px] md:text-[11px] uppercase tracking-[0.48em] font-bold text-white/60 mt-1 whitespace-nowrap">
+                <span className="text-[7px] md:text-[11px] uppercase tracking-[0.62em] font-bold text-white/60 whitespace-nowrap leading-none">
                   Engineering safer tomorrow
                 </span>
               </div>
@@ -548,6 +551,30 @@ const WhatsAppButton = () => (
   </a>
 );
 
+const ProjectsPage = () => (
+  <section className="pt-48 pb-32 bg-slate-50">
+    <div className="max-w-7xl mx-auto px-6">
+      <h2 className="text-orange-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Our Projects</h2>
+      <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-12 tracking-tighter">Building the Future of J&K.</h3>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          { title: 'LGSF Residential Villa', location: 'Srinagar', img: 'background.jpg' },
+          { title: 'Industrial Warehouse', location: 'Rangreth', img: 'structural.jpg' },
+          { title: 'Commercial Complex', location: 'Rajbagh', img: 'LGSF Fabrication.png' },
+        ].map((project, i) => (
+          <div key={i} className="group cursor-pointer">
+            <div className="rounded-3xl overflow-hidden mb-6 aspect-video">
+              <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
+            </div>
+            <h4 className="text-xl font-black text-slate-900 mb-1 uppercase tracking-widest">{project.title}</h4>
+            <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">{project.location}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const HomePage = () => (
   <>
     <Hero />
@@ -569,6 +596,7 @@ export default function App() {
           <Route path="/lgsf" element={<LGSFSection isPage={true} />} />
           <Route path="/structural" element={<StructuralSection isPage={true} />} />
           <Route path="/manufacturing" element={<FactorySection isPage={true} />} />
+          <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/contact" element={<Contact isPage={true} />} />
         </Routes>
         <Footer />
