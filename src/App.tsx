@@ -66,25 +66,25 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled || !isHome ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-5">
+        <Link to="/" className="flex items-center gap-3">
           <img 
             src="BossforceLogo.png" 
             alt="Bossforce Steel Logo" 
-            className="h-16 md:h-28 w-auto object-contain"
+            className="h-10 md:h-14 w-auto object-contain"
             referrerPolicy="no-referrer"
           />
-          <div className="flex flex-col justify-between h-14 md:h-24 py-1">
-            <span className={`text-3xl md:text-7xl font-black tracking-tighter leading-none ${isScrolled || !isHome ? 'text-slate-900' : 'text-white'}`}>
+          <div className="flex flex-col justify-center">
+            <span className={`text-xl md:text-3xl font-black tracking-tighter leading-none whitespace-nowrap ${isScrolled || !isHome ? 'text-slate-900' : 'text-white'}`}>
               BOSSFORCE <span className="text-orange-600">STEEL</span>
             </span>
-            <span className={`text-[7px] md:text-[15px] uppercase tracking-[0.62em] font-bold whitespace-nowrap leading-none ${isScrolled || !isHome ? 'text-slate-500' : 'text-white/60'}`}>
+            <span className={`text-[5px] md:text-[8px] uppercase tracking-[0.45em] font-bold whitespace-nowrap leading-none mt-1 ${isScrolled || !isHome ? 'text-slate-500' : 'text-white/60'}`}>
               Engineering safer tomorrow
             </span>
           </div>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-6 lg:gap-10">
           {navLinks.map((item) => (
             <Link 
               key={item.name} 
@@ -329,7 +329,7 @@ const StructuralSection = ({ isPage = false }) => {
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2 order-2 lg:order-1">
             <h2 className="text-orange-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Structural Steel</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 tracking-tighter">Heavy-Duty Structural Excellence.</h3>
+            <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 tracking-tighter whitespace-nowrap uppercase">Structural Steel</h3>
             <p className="text-slate-600 text-lg mb-10 leading-relaxed">
               Beyond LGSF, we are experts in traditional structural steel construction. From industrial warehouses to complex commercial frames, we provide end-to-end fabrication and erection services.
             </p>
@@ -461,18 +461,18 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
           <div className="max-w-sm">
-            <div className="flex items-center gap-5 mb-8">
+            <div className="flex items-center gap-3 mb-8">
               <img 
                 src="BossforceLogo.png" 
                 alt="Bossforce Steel Logo" 
-                className="h-16 md:h-24 w-auto object-contain"
+                className="h-10 md:h-12 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
-              <div className="flex flex-col justify-between h-14 md:h-20 py-1">
-                <span className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-none">
+              <div className="flex flex-col justify-center">
+                <span className="text-xl md:text-2xl font-black tracking-tighter text-white leading-none whitespace-nowrap">
                   BOSSFORCE <span className="text-orange-600">STEEL</span>
                 </span>
-                <span className="text-[7px] md:text-[11px] uppercase tracking-[0.62em] font-bold text-white/60 whitespace-nowrap leading-none">
+                <span className="text-[5px] md:text-[7px] uppercase tracking-[0.45em] font-bold text-white/60 whitespace-nowrap leading-none mt-1">
                   Engineering safer tomorrow
                 </span>
               </div>
@@ -578,10 +578,28 @@ const ProjectsPage = () => (
 const HomePage = () => (
   <>
     <Hero />
-    <LGSFSection />
-    <FactorySection />
-    <StructuralSection />
-    <Contact />
+    {/* Clean Home Page: Full sections moved to their respective pages */}
+    <section className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <h2 className="text-orange-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Our Expertise</h2>
+        <h3 className="text-4xl md:text-5xl font-black text-slate-900 mb-12 tracking-tighter">Pioneering Steel Solutions in J&K.</h3>
+        <div className="grid md:grid-cols-3 gap-12">
+          {[
+            { title: 'LGSF Construction', desc: 'Rapid, seismic-resistant framing for residential and commercial projects.', link: '/lgsf' },
+            { title: 'Structural Steel', desc: 'Heavy-duty fabrication for industrial sheds and large-scale frames.', link: '/structural' },
+            { title: 'Manufacturing', desc: 'State-of-the-art CNC roll-forming facility in Rangreth.', link: '/manufacturing' }
+          ].map((item, i) => (
+            <Link key={i} to={item.link} className="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-500 text-left">
+              <h4 className="text-xl font-black text-slate-900 mb-4 uppercase tracking-widest group-hover:text-orange-600 transition-colors">{item.title}</h4>
+              <p className="text-slate-500 text-sm leading-relaxed mb-6">{item.desc}</p>
+              <span className="text-orange-600 font-black text-[10px] uppercase tracking-widest flex items-center gap-2">
+                Learn More <ArrowRight className="w-3 h-3 group-hover:translate-x-2 transition-transform" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   </>
 );
 
