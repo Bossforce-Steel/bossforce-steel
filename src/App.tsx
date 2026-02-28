@@ -22,12 +22,22 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 
-// Scroll to top on route change
+// Scroll to top or hash on route change
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+  
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+
   return null;
 };
 
@@ -44,10 +54,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'LGSF', path: '/lgsf' },
-    { name: 'Structural', path: '/structural' },
-    { name: 'Manufacturing', path: '/manufacturing' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'LGSF', path: '/#lgsf' },
+    { name: 'Structural', path: '/#structural' },
+    { name: 'Manufacturing', path: '/#manufacturing' },
+    { name: 'Contact', path: '/#contact' },
   ];
 
   const isHome = location.pathname === '/';
@@ -161,13 +171,17 @@ const Hero = () => {
             <Zap className="w-4 h-4 text-orange-400" />
             <span className="text-orange-400 text-[10px] font-black uppercase tracking-[0.4em]">Next-Gen Construction</span>
           </div>
-          <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] mb-8 tracking-tighter">
-            ENGINEERING <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-300">SAFER</span> TOMORROWS.
+          <h1 className="text-7xl md:text-9xl font-black text-white leading-none mb-4 tracking-tighter">
+            BOSSFORCE <span className="text-orange-600">STEEL</span>
           </h1>
-          <p className="text-slate-300 text-lg md:text-xl mb-12 leading-relaxed max-w-xl font-medium">
-            Bossforce Steel specializes in Light Gauge Steel Framing (LGSF) and Structural Steel, delivering earthquake-resistant, rapid, and sustainable building solutions across J&K.
-          </p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-2xl md:text-4xl font-black text-white/90 uppercase tracking-[0.15em] mb-12"
+          >
+            ENGINEERING <span className="text-orange-600">SAFER</span> TOMORROW
+          </motion.p>
           <div className="flex flex-col sm:flex-row gap-5">
             <Link to="/lgsf" className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-3 group shadow-2xl shadow-orange-600/40">
               Explore LGSF Solutions
@@ -192,7 +206,7 @@ const Hero = () => {
 
 const LGSFSection = ({ isPage = false }) => {
   return (
-    <section className={`py-32 bg-white overflow-hidden ${isPage ? 'pt-48' : ''}`}>
+    <section id="lgsf" className={`py-32 bg-white overflow-hidden ${isPage ? 'pt-48' : ''}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-20">
           <div className="lg:w-1/2">
@@ -259,7 +273,7 @@ const LGSFSection = ({ isPage = false }) => {
 
 const FactorySection = ({ isPage = false }) => {
   return (
-    <section className={`py-32 bg-slate-950 relative overflow-hidden ${isPage ? 'pt-48' : ''}`}>
+    <section id="manufacturing" className={`py-32 bg-slate-950 relative overflow-hidden ${isPage ? 'pt-48' : ''}`}>
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500 via-transparent to-transparent"></div>
       </div>
@@ -331,7 +345,7 @@ const FactorySection = ({ isPage = false }) => {
 
 const StructuralSection = ({ isPage = false }) => {
   return (
-    <section className={`py-32 bg-slate-50 ${isPage ? 'pt-48' : ''}`}>
+    <section id="structural" className={`py-32 bg-slate-50 ${isPage ? 'pt-48' : ''}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2 order-2 lg:order-1">
@@ -378,7 +392,7 @@ const StructuralSection = ({ isPage = false }) => {
 
 const Contact = ({ isPage = false }) => {
   return (
-    <section className={`py-32 bg-white ${isPage ? 'pt-48' : ''}`}>
+    <section id="contact" className={`py-32 bg-white ${isPage ? 'pt-48' : ''}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-20">
           <div>
