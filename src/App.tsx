@@ -69,15 +69,15 @@ const Navbar = () => {
           <img 
             src="BossforceLogo.png" 
             alt="Bossforce Steel Logo" 
-            className="h-12 w-auto object-contain"
+            className="h-16 md:h-20 w-auto object-contain"
             referrerPolicy="no-referrer"
           />
           <div className="flex flex-col">
-            <span className={`text-2xl font-black tracking-tighter leading-none ${isScrolled || !isHome ? 'text-slate-900' : 'text-white'}`}>
+            <span className={`text-3xl md:text-5xl font-black tracking-tighter leading-none ${isScrolled || !isHome ? 'text-slate-900' : 'text-white'}`}>
               BOSSFORCE <span className="text-orange-600">STEEL</span>
             </span>
-            <span className={`text-[10px] uppercase tracking-[0.3em] font-bold ${isScrolled || !isHome ? 'text-slate-500' : 'text-white/60'}`}>
-              Engineering safer tomorrows
+            <span className={`text-[9px] md:text-[11px] uppercase tracking-[0.48em] font-bold mt-1 whitespace-nowrap ${isScrolled || !isHome ? 'text-slate-500' : 'text-white/60'}`}>
+              Engineering safer tomorrow
             </span>
           </div>
         </Link>
@@ -94,15 +94,6 @@ const Navbar = () => {
               <span className={`absolute -bottom-1 left-0 h-0.5 bg-orange-600 transition-all ${location.pathname === item.path ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
             </Link>
           ))}
-          <a 
-            href="https://wa.me/917006699304"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-xl shadow-orange-600/30 flex items-center gap-2"
-          >
-            <MessageCircle className="w-4 h-4" />
-            WhatsApp
-          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -131,13 +122,6 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <a 
-                href="https://wa.me/917006699304"
-                className="bg-orange-600 text-white w-full py-4 rounded-xl font-bold flex items-center justify-center gap-3 text-lg"
-              >
-                <MessageCircle className="w-6 h-6" />
-                Connect on WhatsApp
-              </a>
             </div>
           </motion.div>
         )}
@@ -160,28 +144,20 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/40 to-slate-950"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex justify-start">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="max-w-3xl"
+          className="max-w-2xl"
         >
           <div className="inline-flex items-center gap-3 bg-orange-600/20 border border-orange-500/30 px-4 py-1.5 rounded-full mb-8 backdrop-blur-sm">
             <Zap className="w-4 h-4 text-orange-400" />
             <span className="text-orange-400 text-[10px] font-black uppercase tracking-[0.4em]">Next-Gen Construction</span>
           </div>
-          <h1 className="text-7xl md:text-9xl font-black text-white leading-none mb-4 tracking-tighter">
-            BOSSFORCE <span className="text-orange-600">STEEL</span>
+          <h1 className="text-3xl md:text-6xl font-black text-white leading-tight mb-12 tracking-tighter uppercase">
+            ENGINEERING <span className="text-orange-600">SAFER</span> <br /> TOMORROW
           </h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-2xl md:text-4xl font-black text-white/90 uppercase tracking-[0.15em] mb-12"
-          >
-            ENGINEERING <span className="text-orange-600">SAFER</span> TOMORROW
-          </motion.p>
           <div className="flex flex-col sm:flex-row gap-5">
             <Link to="/lgsf" className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-3 group shadow-2xl shadow-orange-600/40">
               Explore LGSF Solutions
@@ -486,15 +462,20 @@ const Footer = () => {
               <img 
                 src="BossforceLogo.png" 
                 alt="Bossforce Steel Logo" 
-                className="h-10 w-auto object-contain"
+                className="h-16 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
-              <span className="text-2xl font-black tracking-tighter text-white">
-                BOSSFORCE <span className="text-orange-600">STEEL</span>
-              </span>
+              <div className="flex flex-col">
+                <span className="text-3xl md:text-4xl font-black tracking-tighter text-white leading-none">
+                  BOSSFORCE <span className="text-orange-600">STEEL</span>
+                </span>
+                <span className="text-[9px] md:text-[11px] uppercase tracking-[0.48em] font-bold text-white/60 mt-1 whitespace-nowrap">
+                  Engineering safer tomorrow
+                </span>
+              </div>
             </div>
             <p className="text-slate-400 font-medium leading-relaxed mb-8">
-              Pioneering the future of construction in Jammu & Kashmir with precision-engineered steel solutions. Engineering safer tomorrows, today.
+              Pioneering the future of construction in Jammu & Kashmir with precision-engineered steel solutions. Engineering safer tomorrow, today.
             </p>
             <div className="flex gap-4">
               {['FB', 'TW', 'LN', 'IG'].map(social => (
