@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState, useEffect } from 'react';
 import { 
   Shield, 
@@ -25,10 +20,21 @@ import {
   Wind
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+
+// Scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -36,10 +42,20 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'LGSF', path: '/lgsf' },
+    { name: 'Structural', path: '/structural' },
+    { name: 'Manufacturing', path: '/manufacturing' },
+    { name: 'Contact', path: '/contact' },
+  ];
+
+  const isHome = location.pathname === '/';
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled || !isHome ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <img 
             src="BossforceLogo.png" 
             alt="Bossforce Steel Logo" 
@@ -47,26 +63,26 @@ const Navbar = () => {
             referrerPolicy="no-referrer"
           />
           <div className="flex flex-col">
-            <span className={`text-2xl font-black tracking-tighter leading-none ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
+            <span className={`text-2xl font-black tracking-tighter leading-none ${isScrolled || !isHome ? 'text-slate-900' : 'text-white'}`}>
               BOSSFORCE <span className="text-orange-600">STEEL</span>
             </span>
-            <span className={`text-[10px] uppercase tracking-[0.3em] font-bold ${isScrolled ? 'text-slate-500' : 'text-white/60'}`}>
+            <span className={`text-[10px] uppercase tracking-[0.3em] font-bold ${isScrolled || !isHome ? 'text-slate-500' : 'text-white/60'}`}>
               Engineering safer tomorrows
             </span>
           </div>
-        </div>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-10">
-          {['LGSF', 'Structural', 'Manufacturing', 'Contact'].map((item) => (
-            <a 
-              key={item} 
-              href={`#${item.toLowerCase()}`} 
-              className={`text-xs font-bold uppercase tracking-widest transition-all hover:text-orange-600 relative group ${isScrolled ? 'text-slate-600' : 'text-white/90'}`}
+          {navLinks.map((item) => (
+            <Link 
+              key={item.name} 
+              to={item.path} 
+              className={`text-xs font-bold uppercase tracking-widest transition-all hover:text-orange-600 relative group ${isScrolled || !isHome ? 'text-slate-600' : 'text-white/90'}`}
             >
-              {item}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 transition-all group-hover:w-full"></span>
-            </a>
+              {item.name}
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-orange-600 transition-all ${location.pathname === item.path ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+            </Link>
           ))}
           <a 
             href="https://wa.me/917006699304"
@@ -81,7 +97,7 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X className={isScrolled ? 'text-slate-900' : 'text-white'} /> : <Menu className={isScrolled ? 'text-slate-900' : 'text-white'} />}
+          {isMobileMenuOpen ? <X className={isScrolled || !isHome ? 'text-slate-900' : 'text-white'} /> : <Menu className={isScrolled || !isHome ? 'text-slate-900' : 'text-white'} />}
         </button>
       </div>
 
@@ -95,15 +111,15 @@ const Navbar = () => {
             className="absolute top-full left-0 right-0 bg-white border-t border-slate-100 p-8 shadow-2xl md:hidden overflow-hidden"
           >
             <div className="flex flex-col gap-6">
-              {['LGSF', 'Structural', 'Manufacturing', 'Contact'].map((item) => (
-                <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
+              {navLinks.map((item) => (
+                <Link 
+                  key={item.name} 
+                  to={item.path} 
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-slate-900 font-bold text-lg uppercase tracking-widest border-b border-slate-50 pb-2"
                 >
-                  {item}
-                </a>
+                  {item.name}
+                </Link>
               ))}
               <a 
                 href="https://wa.me/917006699304"
@@ -153,13 +169,13 @@ const Hero = () => {
             Bossforce Steel specializes in Light Gauge Steel Framing (LGSF) and Structural Steel, delivering earthquake-resistant, rapid, and sustainable building solutions across J&K.
           </p>
           <div className="flex flex-col sm:flex-row gap-5">
-            <button className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-3 group shadow-2xl shadow-orange-600/40">
+            <Link to="/lgsf" className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-3 group shadow-2xl shadow-orange-600/40">
               Explore LGSF Solutions
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-            </button>
-            <button className="bg-white/5 hover:bg-white/10 backdrop-blur-md text-white border border-white/10 px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all">
+            </Link>
+            <Link to="/structural" className="bg-white/5 hover:bg-white/10 backdrop-blur-md text-white border border-white/10 px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all">
               Our Projects
-            </button>
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -174,9 +190,9 @@ const Hero = () => {
   );
 };
 
-const LGSFSection = () => {
+const LGSFSection = ({ isPage = false }) => {
   return (
-    <section id="lgsf" className="py-32 bg-white overflow-hidden">
+    <section className={`py-32 bg-white overflow-hidden ${isPage ? 'pt-48' : ''}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-20">
           <div className="lg:w-1/2">
@@ -228,6 +244,12 @@ const LGSFSection = () => {
                 </div>
               ))}
             </div>
+            {!isPage && (
+              <Link to="/lgsf" className="inline-flex items-center gap-2 mt-12 text-orange-600 font-black uppercase tracking-widest text-sm group">
+                Learn More About LGSF
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -235,9 +257,9 @@ const LGSFSection = () => {
   );
 };
 
-const FactorySection = () => {
+const FactorySection = ({ isPage = false }) => {
   return (
-    <section id="manufacturing" className="py-32 bg-slate-950 relative overflow-hidden">
+    <section className={`py-32 bg-slate-950 relative overflow-hidden ${isPage ? 'pt-48' : ''}`}>
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500 via-transparent to-transparent"></div>
       </div>
@@ -294,6 +316,12 @@ const FactorySection = () => {
                 </div>
               </div>
             ))}
+            {!isPage && (
+              <Link to="/manufacturing" className="inline-flex items-center gap-2 mt-8 text-orange-500 font-black uppercase tracking-widest text-sm group">
+                Explore Our Facility
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -301,9 +329,9 @@ const FactorySection = () => {
   );
 };
 
-const StructuralSection = () => {
+const StructuralSection = ({ isPage = false }) => {
   return (
-    <section id="structural" className="py-32 bg-slate-50">
+    <section className={`py-32 bg-slate-50 ${isPage ? 'pt-48' : ''}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2 order-2 lg:order-1">
@@ -322,9 +350,9 @@ const StructuralSection = () => {
               ))}
             </ul>
 
-            <button className="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-slate-800 transition-all">
+            <Link to="/structural" className="bg-slate-900 text-white px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-slate-800 transition-all inline-block">
               View Structural Portfolio
-            </button>
+            </Link>
           </div>
 
           <div className="lg:w-1/2 order-1 lg:order-2">
@@ -348,9 +376,9 @@ const StructuralSection = () => {
   );
 };
 
-const Contact = () => {
+const Contact = ({ isPage = false }) => {
   return (
-    <section id="contact" className="py-32 bg-white">
+    <section className={`py-32 bg-white ${isPage ? 'pt-48' : ''}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-20">
           <div>
@@ -469,7 +497,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {['LGSF Framing', 'Structural Steel', 'Roofing Systems', 'Wall Panels'].map(link => (
                   <li key={link}>
-                    <a href="#" className="text-slate-500 hover:text-orange-500 transition-colors text-sm font-bold">{link}</a>
+                    <Link to="/lgsf" className="text-slate-500 hover:text-orange-500 transition-colors text-sm font-bold">{link}</Link>
                   </li>
                 ))}
               </ul>
@@ -479,7 +507,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {['About Us', 'Our Factory', 'Projects', 'Careers'].map(link => (
                   <li key={link}>
-                    <a href="#" className="text-slate-500 hover:text-orange-500 transition-colors text-sm font-bold">{link}</a>
+                    <Link to="/" className="text-slate-500 hover:text-orange-500 transition-colors text-sm font-bold">{link}</Link>
                   </li>
                 ))}
               </ul>
@@ -489,7 +517,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {['Contact', 'Get a Quote', 'Privacy', 'Terms'].map(link => (
                   <li key={link}>
-                    <a href="#" className="text-slate-500 hover:text-orange-500 transition-colors text-sm font-bold">{link}</a>
+                    <Link to="/contact" className="text-slate-500 hover:text-orange-500 transition-colors text-sm font-bold">{link}</Link>
                   </li>
                 ))}
               </ul>
@@ -525,17 +553,32 @@ const WhatsAppButton = () => (
   </a>
 );
 
+const HomePage = () => (
+  <>
+    <Hero />
+    <LGSFSection />
+    <FactorySection />
+    <StructuralSection />
+    <Contact />
+  </>
+);
+
 export default function App() {
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-orange-600/30 selection:text-orange-900">
-      <Navbar />
-      <Hero />
-      <LGSFSection />
-      <FactorySection />
-      <StructuralSection />
-      <Contact />
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen bg-white font-sans selection:bg-orange-600/30 selection:text-orange-900">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/lgsf" element={<LGSFSection isPage={true} />} />
+          <Route path="/structural" element={<StructuralSection isPage={true} />} />
+          <Route path="/manufacturing" element={<FactorySection isPage={true} />} />
+          <Route path="/contact" element={<Contact isPage={true} />} />
+        </Routes>
+        <Footer />
+        <WhatsAppButton />
+      </div>
+    </Router>
   );
 }
