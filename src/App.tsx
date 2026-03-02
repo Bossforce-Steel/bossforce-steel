@@ -68,7 +68,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3">
           <img 
-            src="/BossforceLogo.png" 
+            src="BossforceLogo.png" 
             alt="Bossforce Steel Logo" 
             className="h-10 md:h-14 w-auto object-contain"
             referrerPolicy="no-referrer"
@@ -137,7 +137,7 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/background.jpg" 
+          src="background.jpg" 
           alt="LGSF Structure Render" 
           className="w-full h-full object-cover opacity-50 scale-105"
           referrerPolicy="no-referrer"
@@ -197,7 +197,7 @@ const LGSFSection = ({ isPage = false }) => {
                 className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl"
               >
                 <img 
-                  src="/LGSF Fabrication.png" 
+                  src="LGSF Fabrication.png" 
                   alt="LGSF Construction Site" 
                   className="w-full aspect-square object-cover"
                   referrerPolicy="no-referrer"
@@ -274,7 +274,7 @@ const FactorySection = ({ isPage = false }) => {
             className="rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl"
           >
             <img 
-              src="/design1.png" 
+              src="design1.png" 
               alt="LGSF Roll Forming Machine" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
@@ -356,7 +356,7 @@ const StructuralSection = ({ isPage = false }) => {
               className="rounded-[3rem] overflow-hidden shadow-2xl"
             >
               <img 
-                src="/structural.jpg" 
+                src="structural.jpg" 
                 alt="Structural Steel Model" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -463,7 +463,7 @@ const Footer = () => {
           <div className="max-w-sm">
             <div className="flex items-center gap-3 mb-8">
               <img 
-                src="/BossforceLogo.png" 
+                src="BossforceLogo.png" 
                 alt="Bossforce Steel Logo" 
                 className="h-10 md:h-12 w-auto object-contain"
                 referrerPolicy="no-referrer"
@@ -558,9 +558,9 @@ const ProjectsPage = () => (
       <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-12 tracking-tighter">Building the Future of J&K.</h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {[
-          { title: 'LGSF Residential Villa', desc: 'A modern, seismic-resistant residential structure built with precision LGSF technology.', img: '/villa.jpg' },
-          { title: 'Industrial Warehouse', desc: 'Heavy-duty structural steel framing designed for maximum durability and space efficiency.', img: '/industrial.jpg' },
-          { title: 'Commercial Complex', desc: 'A multi-story commercial frame combining LGSF and structural steel for optimal strength.', img: '/commercial.jpg' },
+          { title: 'LGSF Residential Villa', desc: 'A modern, seismic-resistant residential structure built with precision LGSF technology.', img: 'villa.jpg' },
+          { title: 'Industrial Warehouse', desc: 'Heavy-duty structural steel framing designed for maximum durability and space efficiency.', img: 'industrial.jpg' },
+          { title: 'Commercial Complex', desc: 'A multi-story commercial frame combining LGSF and structural steel for optimal strength.', img: 'commercial.jpg' },
         ].map((project, i) => (
           <div key={i} className="group cursor-pointer">
             <div className="rounded-3xl overflow-hidden mb-6 aspect-video">
