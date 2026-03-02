@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     console.log('Attempting to send email via Resend...');
     const { data, error } = await resend.emails.send({
       from: 'Bossforce Steel <onboarding@resend.dev>',
-      to: ['bossforcesteel@gmail.com'],
+      to: ['englishquire@gmail.com'],
       subject: `New Inquiry from ${name} - ${interest}`,
       html: `
         <div style="font-family: sans-serif; padding: 20px; color: #333;">

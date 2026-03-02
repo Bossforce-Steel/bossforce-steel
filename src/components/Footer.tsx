@@ -62,7 +62,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {['Contact', 'Get a Quote', 'Privacy', 'Terms'].map(link => (
                   <li key={link}>
-                    <a href="mailto:bossforcesteel@gmail.com" className="text-slate-500 hover:text-orange-500 transition-colors text-sm font-bold">{link}</a>
+                    <a href="mailto:englishquire@gmail.com" className="text-slate-500 hover:text-orange-500 transition-colors text-sm font-bold">{link}</a>
                   </li>
                 ))}
               </ul>
