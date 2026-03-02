@@ -20,7 +20,7 @@ import {
   Wind
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 
 // Scroll to top or hash on route change
 const ScrollToTop = () => {
@@ -558,16 +558,16 @@ const ProjectsPage = () => (
       <h3 className="text-5xl md:text-6xl font-black text-slate-900 mb-12 tracking-tighter">Building the Future of J&K.</h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {[
-          { title: 'LGSF Residential Villa', location: 'Srinagar', img: 'background.jpg' },
-          { title: 'Industrial Warehouse', location: 'Rangreth', img: 'structural.jpg' },
-          { title: 'Commercial Complex', location: 'Rajbagh', img: 'LGSF Fabrication.png' },
+          { title: 'LGSF Residential Villa', desc: 'A modern, seismic-resistant residential structure built with precision LGSF technology.', img: 'villa.jpg' },
+          { title: 'Industrial Warehouse', desc: 'Heavy-duty structural steel framing designed for maximum durability and space efficiency.', img: 'industrial.jpg' },
+          { title: 'Commercial Complex', desc: 'A multi-story commercial frame combining LGSF and structural steel for optimal strength.', img: 'commercial.jpg' },
         ].map((project, i) => (
           <div key={i} className="group cursor-pointer">
             <div className="rounded-3xl overflow-hidden mb-6 aspect-video">
               <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
             </div>
-            <h4 className="text-xl font-black text-slate-900 mb-1 uppercase tracking-widest">{project.title}</h4>
-            <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">{project.location}</p>
+            <h4 className="text-xl font-black text-slate-900 mb-2 uppercase tracking-widest">{project.title}</h4>
+            <p className="text-slate-500 font-medium text-sm leading-relaxed">{project.desc}</p>
           </div>
         ))}
       </div>
