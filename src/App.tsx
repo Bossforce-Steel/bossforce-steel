@@ -418,6 +418,23 @@ const Contact = ({ isPage = false }) => {
                   <p className="text-slate-500">info@bossforcesteel.com</p>
                 </div>
               </div>
+
+              <div className="flex gap-8">
+                <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="text-orange-600 w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-black text-slate-900 uppercase tracking-widest text-sm mb-2">WhatsApp</h4>
+                  <a 
+                    href="https://wa.me/917006699304" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-slate-500 hover:text-orange-600 transition-colors"
+                  >
+                    +91 70066 99304
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -425,15 +442,15 @@ const Contact = ({ isPage = false }) => {
             <form className="space-y-8">
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Your Name</label>
-                <input type="text" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-orange-600/10 focus:border-orange-600 transition-all font-medium" placeholder="Full Name" />
+                <input name="name" type="text" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-orange-600/10 focus:border-orange-600 transition-all font-medium" placeholder="Full Name" required />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Email Address</label>
-                <input type="email" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-orange-600/10 focus:border-orange-600 transition-all font-medium" placeholder="email@example.com" />
+                <input name="email" type="email" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-orange-600/10 focus:border-orange-600 transition-all font-medium" placeholder="email@example.com" required />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Project Interest</label>
-                <select className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-orange-600/10 focus:border-orange-600 transition-all font-medium appearance-none">
+                <select name="interest" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-orange-600/10 focus:border-orange-600 transition-all font-medium appearance-none">
                   <option>LGSF Residential</option>
                   <option>LGSF Commercial</option>
                   <option>Structural Steel Shed</option>
@@ -442,9 +459,9 @@ const Contact = ({ isPage = false }) => {
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Message</label>
-                <textarea rows={4} className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-orange-600/10 focus:border-orange-600 transition-all font-medium" placeholder="Tell us about your project..."></textarea>
+                <textarea name="message" rows={4} className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-orange-600/10 focus:border-orange-600 transition-all font-medium" placeholder="Tell us about your project..." required></textarea>
               </div>
-              <button className="w-full bg-orange-600 text-white py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-orange-700 transition-all shadow-2xl shadow-orange-600/30">
+              <button type="submit" className="w-full bg-orange-600 text-white py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-orange-700 transition-all shadow-2xl shadow-orange-600/30">
                 Send Inquiry
               </button>
             </form>
@@ -537,20 +554,6 @@ const Footer = () => {
   );
 };
 
-const WhatsAppButton = () => (
-  <a 
-    href="https://wa.me/917006699304" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform active:scale-95 flex items-center justify-center group"
-  >
-    <MessageCircle className="w-8 h-8" />
-    <span className="absolute right-full mr-4 bg-white text-slate-900 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-      Chat with us
-    </span>
-  </a>
-);
-
 const ProjectsPage = () => (
   <section className="pt-48 pb-32 bg-slate-50">
     <div className="max-w-7xl mx-auto px-6">
@@ -618,7 +621,6 @@ export default function App() {
           <Route path="/contact" element={<Contact isPage={true} />} />
         </Routes>
         <Footer />
-        <WhatsAppButton />
       </div>
     </Router>
   );
