@@ -47,7 +47,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-black text-slate-900 uppercase tracking-widest text-sm mb-2">Email</h4>
-                  <p className="text-slate-500">info@bossforcesteel.com</p>
+                  <p className="text-slate-500">bossforcesteel@gmail.com</p>
                 </div>
               </div>
 
@@ -71,7 +71,45 @@ const Contact = () => {
           </div>
 
           <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100">
-            <form className="space-y-8">
+            <form 
+              className="space-y-8"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+                
+                const btn = form.querySelector('button');
+                if (btn) {
+                  btn.disabled = true;
+                  btn.innerText = 'Sending...';
+                }
+
+                try {
+                  const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                  });
+
+                  if (response.ok) {
+                    alert('Thank you! Your inquiry has been sent successfully.');
+                    form.reset();
+                  } else {
+                    const err = await response.json();
+                    alert(`Error: ${err.message || 'Failed to send message. Please try again later.'}`);
+                  }
+                } catch (error) {
+                  console.error('Submission error:', error);
+                  alert('Something went wrong. Please try again later.');
+                } finally {
+                  if (btn) {
+                    btn.disabled = false;
+                    btn.innerText = 'Send Inquiry';
+                  }
+                }
+              }}
+            >
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Your Name</label>
                 <input name="name" type="text" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-orange-600/10 focus:border-orange-600 transition-all font-medium" placeholder="Full Name" required />
